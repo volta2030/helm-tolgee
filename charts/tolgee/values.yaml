@@ -8,7 +8,7 @@ image:
   repository: tolgee/tolgee
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v2.36.1
+  tag: v3.141.2
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -37,7 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 8080
 
 ingress:
@@ -84,11 +84,12 @@ postgresql:
     password: tolgee_password # MUST be replaced with some secret password! Don't use this in production
   primary:
     persistence: 
-      size: 1Gi
+      size: 4Gi
 
 tolgee:
-  env: {}
+  env:
+    TOLGEE_AUTHENTICATION_ENABLED: "true"
   persistence:
     enabled: true
     storageClass: ""
-    size: 1Gi
+    size: 2Gi

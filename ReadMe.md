@@ -12,27 +12,32 @@ This chart provide :
 ## Quick Start
 
 ```bash
-helm repo add tolgee https://throrin19.github.io/helm-tolgee/
+helm repo add tolgee https://github.com/volta2030/helm-tolgee/
 
-helm install tolgee tolgee/tolgee \
---set postgresql.auth.password=moreSecurePassword
+helm install tolgee tolgee/tolgee --set postgresql.auth.password="moreSecurePassword"
+```
+
+### find admin password
+id : admin
+```bash
+kubectl exec <your-tolgee-pod-name> -n tolgee -- cat /data/initial.pwd
 ```
 
 ## Values
 
 | Value | Description | Default Value |
 | --- | --- | --- |
-| image.tag | Tolgee version | 2.30.3 |
+| image.tag | Tolgee version | 3.141.2 |
 | service.port | Service port | 8080 |
 | ingress.enabled | Enable or not Ingress | `false` |
 | tolgee.persistence.enabled | Activate or not postgres persistence | `true` |
 | tolgee.persistence.storageClass | PVC Storage class | - |
-| tolgee.persistence.size | PVC size | 1Gi |
+| tolgee.persistence.size | PVC size | 2Gi |
 | postgresql.enabled | Enable or not postgres | `true` |
 | postgresql.auth.database | Tolgee database | tolgee |
 | postgresql.auth.username | Tolgee Database user | tolgee |
 | postgresql.auth.password | Tolgee password | tolgee_password |
 | postgresql.auth.postgresPassword | Root password | root_password |
-| postgresql.primary.persistence.size | PVC size | 1Gi |
+| postgresql.primary.persistence.size | PVC size | 4Gi |
 
 > You can see all [postgres configs here](https://artifacthub.io/packages/helm/bitnami/postgresql)
