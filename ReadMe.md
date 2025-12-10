@@ -14,11 +14,12 @@ This chart provide :
 ```bash
 helm repo add tolgee https://github.com/volta2030/helm-tolgee/
 
-helm install tolgee tolgee/tolgee --set postgresql.auth.password="moreSecurePassword"
+helm install tolgee tolgee/tolgee --namespace tolgee --create-namespace --set postgresql.auth.password="moreSecurePassword"
 ```
 
 ### find admin password
 id : admin
+
 ```bash
 kubectl exec <your-tolgee-pod-name> -n tolgee -- cat /data/initial.pwd
 ```
